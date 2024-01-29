@@ -7,7 +7,7 @@ const Upload = () => {
         Summaries of the saved recordings
       </div>
       <button className="hover:underline transition-all text-3xl font-semibold rounded-md">
-        Record
+        
       </button>
     </div>
   );
