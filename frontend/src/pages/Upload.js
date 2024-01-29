@@ -6,7 +6,7 @@ const Upload = () => {
       <div className="text-5xl font-bold pb-8">
         Summaries of the saved recordings
       </div>
-      <button className="hover:underline transition-all text-5xl mt-20 font-semibold rounded-md">
+      <button className="hover:underline transition-all text-4xl opacity-60 mt-20 font-semibold rounded-md">
         No Recordings Yet.
       </button>
     </div>
