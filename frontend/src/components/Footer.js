@@ -11,6 +11,7 @@ const Footer = () => {
   const handleRecording = async (audioFile) => {
     var url = URL.createObjectURL(audioFile);
     var modifiedUrl = url.substring(5);
+    console.log(modifiedUrl);
     // console.log(JSON.stringify({ audio: url }));
     // console.log(url);
     // console.log(audioFile);
