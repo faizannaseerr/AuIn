@@ -8,6 +8,23 @@ const Footer = () => {
   const chunks = useRef([]);
   const navigate = useNavigate();
 
+  const handleRecording = async (audioFile) => {
+    var url = URL.createObjectURL(audioFile);
+    var modifiedUrl = url.substring(5);
+    // console.log(JSON.stringify({ audio: url }));
+    // console.log(url);
+    // console.log(audioFile);
+    const response = await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ audio: modifiedUrl }),
+    });
+    const json = await response.json();
+    return json;
+  };
+
   useEffect(() => {
     const mic_btn = document.querySelector("#mic");
     // const playback = document.querySelector("#playback");
@@ -45,7 +62,9 @@ const Footer = () => {
         // const audioURL = window.URL.createObjectURL(blob);
         const audioFile = new File([blob], "sample.mpeg");
         // playback.src = audioURL;
-        navigate("/summarize", { state: { audioFile } }); // this is a link
+        console.log("This is audio file format: ", audioFile);
+        // console.log("helloooo: ", handleRecording(audioFile));
+        // navigate("/summarize", { state: { audioFile } }); // this is a link
       };
 
       can_record = true;
@@ -84,7 +103,9 @@ const Footer = () => {
       // ...
 
       // Change the route after processing the file
-      navigate("/summarize", { state: { audioFile } }); // this is an audio file
+      console.log("This is audio file format: ", audioFile);
+      handleRecording(audioFile);
+      // navigate("/summarize", { state: { audioFile } }); // this is an audio file
     }
 
     // Update the input element to call handleFileChange when a file is selected
