@@ -2,87 +2,86 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
-const openai = "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";
-const model1 = "whisper-1";
+const openai = "sk-proj-MrAt8RFiaXvC253C3ZyfT3BlbkFJqnnYP6UWfbCq1LadgKum";
+// const model1 = "whisper-1";
 const model2 = "gpt-4";
 
 const Summarize = () => {
   const { state } = useLocation();
+  // const newstate = JSON.parse(state)
+  // const transcription = newstate.transcript
   const [response, setResponse] = useState(null);
-  const [responseOne, setResponseOne] = useState(null);
-  console.log(state);
+  // console.log(newstate);
 
-  useEffect(() => {
-    const fetchAudioFile = async () => {
-      if (!state) {
-        console.log("returning");
-        return;
-      }
-
+  const handleRecording = async (audioFile) => {
+    return new Promise((resolve, reject) => {
       const formData = new FormData();
-      formData.append("model", model1);
-      formData.append("file", state.audioFile);
-
-      axios
-        .post("https://api.openai.com/v1/audio/transcriptions", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${openai}`,
-          },
+      formData.append("audio", audioFile);
+      fetch("/summarize", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          // console.log(json);
+          resolve(json);
         })
-        .then((res) => {
-          console.log("hello", res.data);
-          setResponse(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          console.error(error);
+          reject(error);
         });
+    });
+  };
+
+  const createSummary = async (transcription) => {
+    const requestBody = {
+      model: model2,
+      messages: [
+        {
+          role: "system",
+          content: "You are a helpful assistant.",
+        },
+        {
+          role: "user",
+          content: `Give me the first three words and the last three words from this text: ${transcription}`,
+        },
+      ],
+      temperature: 0.5,
+      max_tokens: 1024,
+      n: 1,
     };
-    fetchAudioFile();
-  }, [state]);
+
+    axios
+      .post("https://api.openai.com/v1/chat/completions", requestBody, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${openai}`,
+        },
+      })
+      .then((res) => {
+        // console.log("hello2", res.data);
+        setResponse(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
 
   useEffect(() => {
-    const createSummary = async () => {
-      if (!response) {
-        return;
+    async function summarization() {
+      try {
+        const result = await handleRecording(state.audioFile);
+        const transcription = result.transcript
+        createSummary(transcription);
+      } catch (error) {
+        console.error("Error while handling recording:", error);
       }
-
-      const requestBody = {
-        model: model2,
-        messages: [
-          {
-            role: "system",
-            content: "You are a helpful assistant.",
-          },
-          {
-            role: "user",
-            content: `Summarize the following recording: ${response.text}`,
-          },
-        ],
-        temperature: 0.5,
-        max_tokens: 1024,
-        n: 1,
-      };
-
-      axios
-        .post("https://api.openai.com/v1/chat/completions", requestBody, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${openai}`,
-          },
-        })
-        .then((res) => {
-          console.log("hello2", res.data);
-          setResponseOne(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    if (response) {
-      createSummary();
     }
-  }, [response]);
+
+    summarization()
+
+  });
 
   return (
     <div className="text-5xl text-center font-bold pt-4">
@@ -95,10 +94,10 @@ const Summarize = () => {
       </div>
       <div className="py-50"></div> */}
       <div className="text-2xl mt-8 px-52">
-        {responseOne && <div>{responseOne.choices[0].message.content}</div>}
+        {response && <div>{response.choices[0].message.content}</div>}
       </div>
       <div className="text-2xl mt-8">
-        {!responseOne && (
+        {!response && (
           <div className="flex justify-center items-center">
             <div role="status">
               <svg
@@ -127,3 +126,4 @@ const Summarize = () => {
 };
 
 export default Summarize;
+
