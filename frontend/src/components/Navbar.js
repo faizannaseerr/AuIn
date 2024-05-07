@@ -12,10 +12,10 @@ const Navbar = () => {
           Home
         </div>
         <div className="font-semibold hover:opacity-70 hover:underline transition-all cursor-pointer max-w-fit">
-          Instructions
+          Categories
         </div>
         <div className="font-semibold hover:px-12 hover:border-[1px] hover:border-black text-gray-50 hover:text-black bg-[#361012] hover:bg-gradient-to-r hover:from-text-gray-200 hover:to-gray-300 rounded-sm px-6 py-3 cursor-pointer max-w-fit transition-all duration-500">
-          Summaries
+          Instructions
         </div>
       </div>
     </div>
