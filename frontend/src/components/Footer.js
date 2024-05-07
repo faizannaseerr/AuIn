@@ -2,29 +2,12 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { PiRecordFill, PiUploadSimpleBold } from "react-icons/pi";
 
-// from-[#FEEAFA] to-[#FDD8F6]
+// from-[#FEEAFA] to-[#FDD8F6] -- colours
+
 const Footer = () => {
   const recorder = useRef(null);
   const chunks = useRef([]);
   const navigate = useNavigate();
-
-  const handleRecording = async (audioFile) => {
-    var url = URL.createObjectURL(audioFile);
-    var modifiedUrl = url.substring(5);
-    console.log(modifiedUrl);
-    // console.log(JSON.stringify({ audio: url }));
-    // console.log(url);
-    // console.log(audioFile);
-    const response = await fetch("/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ audio: modifiedUrl }),
-    });
-    const json = await response.json();
-    return json;
-  };
 
   useEffect(() => {
     const mic_btn = document.querySelector("#mic");
@@ -34,7 +17,6 @@ const Footer = () => {
     let is_recording = false;
 
     function SetupAudio() {
-      // console.log("Setup");
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices
           .getUserMedia({ audio: true })
@@ -54,18 +36,22 @@ const Footer = () => {
         chunks.current.push(e.data);
       };
 
-      // have to edit this to send recorded audio somewhere
-      recorder.current.onstop = (e) => {
+      recorder.current.onstop = async (e) => {
         const blob = new Blob(chunks.current, {
           type: "audio/mpeg",
         });
         chunks.current = [];
-        // const audioURL = window.URL.createObjectURL(blob);
         const audioFile = new File([blob], "sample.mpeg");
+        // fix file name here, i.e make it unique or make it unique in the backend
         // playback.src = audioURL;
         console.log("This is audio file format: ", audioFile);
-        // console.log("helloooo: ", handleRecording(audioFile));
-        // navigate("/summarize", { state: { audioFile } }); // this is a link
+        navigate("/summarize", { state: { audioFile } });
+        // try {
+        //   const result = await handleRecording(audioFile);
+
+        // } catch (error) {
+        //   console.error("Error while handling recording:", error);
+        // }
       };
 
       can_record = true;
@@ -94,22 +80,20 @@ const Footer = () => {
   }, [navigate]);
 
   useEffect(() => {
-    // ... (your existing useEffect code)
 
-    function handleFileChange(event) {
+    async function handleFileChange(event) {
       const fileInput = event.target;
       const audioFile = fileInput.files[0];
+      console.log("This is audio file format 2: ", audioFile);
+      navigate("/summarize", { state: { audioFile } });
+      // try {
+      //   const result = await handleRecording(audioFile);
 
-      // Process the file as needed (e.g., upload or handle it in some way)
-      // ...
-
-      // Change the route after processing the file
-      console.log("This is audio file format: ", audioFile);
-      handleRecording(audioFile);
-      // navigate("/summarize", { state: { audioFile } }); // this is an audio file
+      // } catch (error) {
+      //   console.error("Error while handling recording:", error);
+      // }
     }
 
-    // Update the input element to call handleFileChange when a file is selected
     const fileInput = document.querySelector("#fileInput");
     fileInput.addEventListener("change", handleFileChange);
 
@@ -156,3 +140,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
