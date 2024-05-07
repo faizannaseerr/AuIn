@@ -28,16 +28,21 @@ code {
 
 @keyframes recording {
   0% {
-    opacity: 0.25; /* 25% opacity */
+    opacity: 0.25;
+    /* 25% opacity */
+    color: white;
   }
 
   50% {
-    opacity: 1; /* 100% opacity */
+    opacity: 1;
+    /* 100% opacity */
+    color: white;
   }
 
   100% {
-    opacity: 0.25; /* 25% opacity */
+    opacity: 0.25;
+    /* 25% opacity */
+    color: white;
   }
 }
-
 
