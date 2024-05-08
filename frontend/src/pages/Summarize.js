@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
-
-const openai = "sk-proj-MrAt8RFiaXvC253C3ZyfT3BlbkFJqnnYP6UWfbCq1LadgKum";
-// const model1 = "whisper-1";
-const model2 = "gpt-4";
 
 const Summarize = () => {
   const { state } = useLocation();
-  // const newstate = JSON.parse(state)
-  // const transcription = newstate.transcript
   const [response, setResponse] = useState(null);
-  // console.log(newstate);
 
   const handleRecording = async (audioFile) => {
     return new Promise((resolve, reject) => {
@@ -23,7 +15,6 @@ const Summarize = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          // console.log(json);
           resolve(json);
         })
         .catch((error) => {
@@ -34,37 +25,35 @@ const Summarize = () => {
   };
 
   const createSummary = async (transcription) => {
-    const requestBody = {
-      model: model2,
-      messages: [
-        {
-          role: "system",
-          content: "You are a helpful assistant.",
-        },
-        {
-          role: "user",
-          content: `Give me the first three words and the last three words from this text: ${transcription}`,
-        },
-      ],
-      temperature: 0.5,
-      max_tokens: 1024,
-      n: 1,
-    };
+    const response = fetch("/summarize", {
+      method: "GET",
+      body: JSON.stringify(transcription)
+    })
 
-    axios
-      .post("https://api.openai.com/v1/chat/completions", requestBody, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${openai}`,
-        },
-      })
-      .then((res) => {
-        // console.log("hello2", res.data);
-        setResponse(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const res = await response.json()
+    if (!res.ok) {
+      console.log("Error")
+    }
+    else {
+      setResponse(res.data)
+    }
+
+
+
+    // axios
+    //   .post("https://api.openai.com/v1/chat/completions", requestBody, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${openai}`,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     // console.log("hello2", res.data);
+    //     setResponse(res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
 

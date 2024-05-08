@@ -1,6 +1,6 @@
 const Recording = require("../models/recordingModel");
 const mongoose = require("mongoose");
-require(dotenv).config();
+require("dotenv").config();
 
 // create a new recording
 const createRecording = async (req, res) => {
