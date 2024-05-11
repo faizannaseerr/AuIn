@@ -19,19 +19,19 @@ const createRecording = async (req, res) => {
   // }
 
   // run external api (gladia) to transcribe recording
-  const options = {
-    method: "POST",
-    headers: {
-      "x-gladia-key": process.env.GLADIA_API,
-      "Content-Type": application / json,
-    },
-    body: `{"audio_url": ${audio}}`,
-  };
+  // const options = {
+  //   method: "POST",
+  //   headers: {
+  //     "x-gladia-key": process.env.GLADIA_API,
+  //     "Content-Type": application / json,
+  //   },
+  //   body: `{"audio_url": ${audio}}`,
+  // };
 
-  await fetch("https://api.gladia.io/v2/transciption", options)
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.log(err));
+  // await fetch("https://api.gladia.io/v2/transciption", options)
+  //   .then((response) => response.json())
+  //   .then((response) => console.log(response))
+  //   .catch((err) => console.log(err));
   // run gpt4 to summarize transcript
 
   // add recording & transciption to db

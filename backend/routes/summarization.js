@@ -11,6 +11,6 @@ const router = express.Router();
 
 router.post("/summarize", upload.single("audio"), getTranscript)
 
-router.get("/summarize", getSummary)
+router.patch("/summarize", getSummary)
 
 module.exports = router

@@ -81,7 +81,7 @@ const getTranscript = async (req, res) => {
 }
 
 const getSummary = async (req, res) => {
-    const transcription = req.body
+    const { transcription } = req.body
     const requestBody = {
         model: "gpt-4",
         messages: [
@@ -107,13 +107,19 @@ const getSummary = async (req, res) => {
                 Authorization: `Bearer ${process.env.OPENAI_KEY}`,
             },
             body: JSON.stringify(requestBody),
-        })
-        res.status(200).json(response)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        res.status(200).json(responseData);
     } catch (error) {
-        res.status(400).json({ error: error })
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-
-
 }
 
 module.exports = {

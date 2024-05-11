@@ -44,14 +44,7 @@ const Footer = () => {
         const audioFile = new File([blob], "sample.mpeg");
         // fix file name here, i.e make it unique or make it unique in the backend
         // playback.src = audioURL;
-        console.log("This is audio file format: ", audioFile);
         navigate("/summarize", { state: { audioFile } });
-        // try {
-        //   const result = await handleRecording(audioFile);
-
-        // } catch (error) {
-        //   console.error("Error while handling recording:", error);
-        // }
       };
 
       can_record = true;
@@ -84,14 +77,7 @@ const Footer = () => {
     async function handleFileChange(event) {
       const fileInput = event.target;
       const audioFile = fileInput.files[0];
-      console.log("This is audio file format 2: ", audioFile);
       navigate("/summarize", { state: { audioFile } });
-      // try {
-      //   const result = await handleRecording(audioFile);
-
-      // } catch (error) {
-      //   console.error("Error while handling recording:", error);
-      // }
     }
 
     const fileInput = document.querySelector("#fileInput");

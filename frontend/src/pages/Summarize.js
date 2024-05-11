@@ -25,18 +25,23 @@ const Summarize = () => {
   };
 
   const createSummary = async (transcription) => {
-    const response = fetch("/summarize", {
-      method: "GET",
-      body: JSON.stringify(transcription)
+    const result = await fetch("/summarize", {
+      method: "PATCH",
+      body: JSON.stringify({ transcription }),
+      headers: {
+        "Content-Type": "application/json"
+      },
     })
-
-    const res = await response.json()
-    if (!res.ok) {
-      console.log("Error")
-    }
-    else {
-      setResponse(res.data)
-    }
+    const res = await result.json()
+    setResponse(res)
+    // const res = await response.json()
+    // console.log(res)
+    // if (!res.ok) {
+    //   console.log("error: ", res.error)
+    // }
+    // else {
+    //   setResponse(res.data)
+    // }
 
 
 
@@ -60,6 +65,7 @@ const Summarize = () => {
   useEffect(() => {
     async function summarization() {
       try {
+        // run summarization only if it has not been done before in mongo database
         const result = await handleRecording(state.audioFile);
         const transcription = result.transcript
         createSummary(transcription);
@@ -70,7 +76,7 @@ const Summarize = () => {
 
     summarization()
 
-  });
+  }, [state]);
 
   return (
     <div className="text-5xl text-center font-bold pt-4">
