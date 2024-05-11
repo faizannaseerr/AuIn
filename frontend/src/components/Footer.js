@@ -88,7 +88,7 @@ const Footer = () => {
     };
   }, [navigate]);
   return (
-    <div className="w-full fixed bottom-0 h-28 flex flex-row bg-neutral-950 text-md font-bold text-[#BF9B9C]">
+    <div className="w-full fixed bottom-0 h-24 flex flex-row bg-neutral-950 text-sm font-bold text-[#BF9B9C]">
       {/* <audio id="playback" controls className="h-100 w-100" /> */}
       <div className="w-full bg-neutral-900 m-2 rounded-lg duration-500 transition-all flex flex-row items-center justify-between gap-20">
         {/* hover:mx-3 hover:my-[0.6rem] */}

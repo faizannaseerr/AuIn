@@ -34,31 +34,7 @@ const Summarize = () => {
     })
     const res = await result.json()
     setResponse(res)
-    // const res = await response.json()
-    // console.log(res)
-    // if (!res.ok) {
-    //   console.log("error: ", res.error)
-    // }
-    // else {
-    //   setResponse(res.data)
-    // }
-
-
-
-    // axios
-    //   .post("https://api.openai.com/v1/chat/completions", requestBody, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${openai}`,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     // console.log("hello2", res.data);
-    //     setResponse(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    // add error checking here
   };
 
 
@@ -67,6 +43,7 @@ const Summarize = () => {
       try {
         // run summarization only if it has not been done before in mongo database
         const result = await handleRecording(state.audioFile);
+        // result is in form: {link, name, transcript}
         const transcription = result.transcript
         createSummary(transcription);
       } catch (error) {
@@ -74,7 +51,7 @@ const Summarize = () => {
       }
     }
 
-    summarization()
+    //summarization()
 
   }, [state]);
 
