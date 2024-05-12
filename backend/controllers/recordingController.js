@@ -4,43 +4,39 @@ require("dotenv").config();
 
 // create a new recording
 const createRecording = async (req, res) => {
-  const { audio } = req.params;
+  let emptyFields = [];
+  const { filename, link, transcript, summary, categories } = req.body;
+  console.log(req.body);
 
-  // let emptyFields = [];
-  // const { title } = req.body;
+  if (!filename) {
+    emptyFields.push("filename");
+  }
+  if (!link) {
+    emptyFields.push("link");
+  }
+  if (!transcript) {
+    emptyFields.push("transcript");
+  }
+  if (!summary) {
+    emptyFields.push("summary");
+  }
+  if (!categories) {
+    emptyFields.push("categories");
+  }
+  if (emptyFields.length > 0) {
+    res
+      .status(400)
+      .json({ error: "Please fill in all the fields", emptyFields });
+    // return;
+  }
 
-  // if (!title) {
-  //   emptyFields.push("title");
-  // }
-  // if (emptyFields.length > 0) {
-  //   res
-  //     .status(400)
-  //     .json({ error: "Please fill in all the fields", emptyFields });
-  // }
-
-  // run external api (gladia) to transcribe recording
-  // const options = {
-  //   method: "POST",
-  //   headers: {
-  //     "x-gladia-key": process.env.GLADIA_API,
-  //     "Content-Type": application / json,
-  //   },
-  //   body: `{"audio_url": ${audio}}`,
-  // };
-
-  // await fetch("https://api.gladia.io/v2/transciption", options)
-  //   .then((response) => response.json())
-  //   .then((response) => console.log(response))
-  //   .catch((err) => console.log(err));
-  // run gpt4 to summarize transcript
-
-  // add recording & transciption to db
-  // try {
-  //   const recording = await Recording.create({ title, load, reps });
-  //   res.status(200).json(recording);
-  // } catch (error) {
-  //   res.status(400).json({ error: error.message });
-  // }
+  // add doc to db
+  try {
+    const recording = await Recording.create({ filename, link, transcript, summary, categories });
+    res.status(200).json(recording);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
 // get all recordings

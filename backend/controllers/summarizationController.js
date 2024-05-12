@@ -122,6 +122,18 @@ const getSummary = async (req, res) => {
     }
 }
 
+const getFlashcards = async (req, res) => {
+}
+
+const getNotes = async (req, res) => {
+}
+
+const getQuestions = async (req, res) => {
+}
+
+const getFollowup = async (req, res) => {
+}
+
 module.exports = {
     getTranscript,
     getSummary

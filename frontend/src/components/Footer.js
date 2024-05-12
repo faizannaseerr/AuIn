@@ -11,7 +11,6 @@ const Footer = () => {
 
   useEffect(() => {
     const mic_btn = document.querySelector("#mic");
-    // const playback = document.querySelector("#playback");
 
     let can_record = false;
     let is_recording = false;
@@ -43,7 +42,7 @@ const Footer = () => {
         chunks.current = [];
         const audioFile = new File([blob], "sample.mpeg");
         // fix file name here, i.e make it unique or make it unique in the backend
-        // playback.src = audioURL;
+        // idea: add popup here before navigation to input in unique name
         navigate("/summarize", { state: { audioFile } });
       };
 
@@ -57,7 +56,6 @@ const Footer = () => {
 
       if (is_recording) {
         recorder.current.start();
-        console.log("start");
         mic_btn.classList.add("is_recording");
       } else {
         mic_btn.classList.remove("is_recording");

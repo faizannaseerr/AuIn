@@ -2,8 +2,9 @@ const express = require("express");
 const {
   createRecording,
   getRecordings,
-  getrecording,
+  getRecording,
   deleteRecording,
+  updateRecording
 } = require("../controllers/recordingController");
 
 const router = express.Router();
@@ -12,12 +13,12 @@ const router = express.Router();
 router.get("/", getRecordings);
 
 // GET single recording
-router.get("/:id", getrecording);
+router.get("/:id", getRecording);
 
 // POST a new recording
 router.post("/", createRecording);
 
-router.patch("/:id", patchRecording);
+router.patch("/:id", updateRecording);
 
 // DELETE a blog
 router.delete("/:id", deleteRecording);
