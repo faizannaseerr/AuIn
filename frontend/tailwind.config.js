@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        merr: ["Merriweather", "serif"],
+        source: ["Source Sans 3", "sans-serif"],
+        mont: ["Montserrat", "sans-serif"]
       },
     },
   },

@@ -86,29 +86,29 @@ const Footer = () => {
     };
   }, [navigate]);
   return (
-    <div className="w-full fixed bottom-0 h-24 flex flex-row bg-neutral-950 text-sm font-bold text-[#BF9B9C]">
-      {/* <audio id="playback" controls className="h-100 w-100" /> */}
-      <div className="w-full bg-neutral-900 m-2 rounded-lg duration-500 transition-all flex flex-row items-center justify-between gap-20">
-        {/* hover:mx-3 hover:my-[0.6rem] */}
-        <div className="pl-8">
+    <div className="w-full fixed bottom-0 h-24 flex flex-row bg-sky-950 text-sm font-bold text-[#FFFFFC]">
+      <div className="w-full bg-sky-900 shadow-md m-2 rounded-lg duration-500 transition-all flex flex-row items-center justify-center gap-10">
+        {/* hover:my-[0.6rem] */}
+        <div className="pl-8 font-source opacity-80">
           Press the record symbol to start recording a session
         </div>
         <div className="pr-16">
           <div
-            className="hover:bg-neutral-800 p-2 rounded-full cursor-pointer group active:bg-neutral-700"
+            className="hover:bg-sky-800 p-2 rounded-full cursor-pointer group active:bg-sky-700"
             id="mic"
           >
-            <PiRecordFill className="opacity-70 group-hover:opacity-100 duration-200 " />
+            <PiRecordFill className="opacity-70 group-hover:opacity-100 duration-200" />
           </div>
         </div>
       </div>
-      <div className="w-full bg-neutral-900 my-2 mr-2 rounded-lg duration-500 flex flex-row items-center justify-between gap-20 transition-all">
-        {/* hover:my-[0.6rem] hover:mr-3 */}
-        <div className="pl-8">
+      <div className="w-full bg-sky-900 shadow-md my-2 mr-2 rounded-lg duration-500 flex flex-row items-center justify-center gap-10 transition-all">
+        {/* hover:my-[0.6rem]*/}
+        <div className="pl-8 font-source opacity-80">
           Press the upload button to upload a pre-recorded session
         </div>
         <div className="pr-16">
-          <div className="relative hover:bg-neutral-800 p-2 rounded-full group active:bg-neutral-700 overflow-hidden">
+          <div className="relative hover:bg-sky-800 p-2 rounded-full group active:bg-sky-700 overflow-hidden">
+            {/* maybe add cursor pointer idk how though */}
             <PiUploadSimpleBold className="opacity-70 group-hover:opacity-100 duration-200" />
             <input
               type="file"

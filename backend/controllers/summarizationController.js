@@ -83,7 +83,7 @@ const getTranscript = async (req, res) => {
 const getSummary = async (req, res) => {
     const { transcription } = req.body
     const requestBody = {
-        model: "gpt-4",
+        model: "gpt-3.5-turbo-16k",
         messages: [
             {
                 role: "system",
@@ -123,18 +123,178 @@ const getSummary = async (req, res) => {
 }
 
 const getFlashcards = async (req, res) => {
+    const { transcription } = req.body
+    const requestBody = {
+        model: "gpt-3.5-turbo-16k",
+        messages: [
+            {
+                role: "system",
+                content: "You are a helpful assistant.",
+            },
+            {
+                role: "user",
+                content: `Give me the first three words and the last three words from this text: ${transcription}`,
+            },
+        ],
+        temperature: 0.5,
+        max_tokens: 1024,
+        n: 1,
+    };
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${process.env.OPENAI_KEY}`,
+            },
+            body: JSON.stringify(requestBody),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        res.status(200).json(responseData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 
 const getNotes = async (req, res) => {
+    const { transcription } = req.body
+    const requestBody = {
+        model: "gpt-3.5-turbo-16k",
+        messages: [
+            {
+                role: "system",
+                content: "You are a helpful assistant.",
+            },
+            {
+                role: "user",
+                content: `Give me the first three words and the last three words from this text: ${transcription}`,
+            },
+        ],
+        temperature: 0.5,
+        max_tokens: 1024,
+        n: 1,
+    };
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${process.env.OPENAI_KEY}`,
+            },
+            body: JSON.stringify(requestBody),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        res.status(200).json(responseData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 
 const getQuestions = async (req, res) => {
+    const { transcription } = req.body
+    const requestBody = {
+        model: "gpt-3.5-turbo-16k",
+        messages: [
+            {
+                role: "system",
+                content: "You are a helpful assistant.",
+            },
+            {
+                role: "user",
+                content: `Give me the first three words and the last three words from this text: ${transcription}`,
+            },
+        ],
+        temperature: 0.5,
+        max_tokens: 1024,
+        n: 1,
+    };
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${process.env.OPENAI_KEY}`,
+            },
+            body: JSON.stringify(requestBody),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        res.status(200).json(responseData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 
 const getFollowup = async (req, res) => {
+    const { transcription } = req.body
+    const requestBody = {
+        model: "gpt-3.5-turbo-16k",
+        messages: [
+            {
+                role: "system",
+                content: "You are a helpful assistant.",
+            },
+            {
+                role: "user",
+                content: `Give me the first three words and the last three words from this text: ${transcription}`,
+            },
+        ],
+        temperature: 0.5,
+        max_tokens: 1024,
+        n: 1,
+    };
+
+    try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${process.env.OPENAI_KEY}`,
+            },
+            body: JSON.stringify(requestBody),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        res.status(200).json(responseData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 
 module.exports = {
     getTranscript,
-    getSummary
+    getSummary,
+    getFlashcards,
+    getNotes,
+    getQuestions,
+    getFollowup
 }

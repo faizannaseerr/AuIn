@@ -3,9 +3,9 @@ import { RxQuote } from "react-icons/rx";
 
 const Navbar = () => {
   return (
-    <div className="text-lg w-full flex flex-row justify-between items-center">
+    <div className="text-md w-full flex flex-row justify-between items-center font-source">
       <div className="font-semibold transition-all cursor-pointer max-w-fit">
-        <RxQuote className="animate-bounce h-10 w-10" />
+        <RxQuote className="animate-bounce h-8 w-8" />
       </div>
       <div className="flex flex-row gap-6 items-center">
         <div className="font-semibold hover:opacity-70 hover:underline transition-all cursor-pointer max-w-fit">
@@ -14,8 +14,8 @@ const Navbar = () => {
         <div className="font-semibold hover:opacity-70 hover:underline transition-all cursor-pointer max-w-fit">
           Categories
         </div>
-        <div className="font-semibold hover:px-12 hover:border-[1px] hover:border-black text-gray-50 hover:text-black bg-[#361012] hover:bg-gradient-to-r hover:from-text-gray-200 hover:to-gray-300 rounded-sm px-6 py-3 cursor-pointer max-w-fit transition-all duration-500">
-          Instructions
+        <div className="font-semibold text-gray-50 hover:text-white bg-zinc-950 rounded-sm px-6 py-3 cursor-pointer max-w-fit hover:bg-zinc-700 transition-all duration-200 shadow-md hover:shadow-lg">
+          Recordings
         </div>
       </div>
     </div>

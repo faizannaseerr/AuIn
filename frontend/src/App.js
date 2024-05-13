@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Upload from "./pages/Upload";
+import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Summarize from "./pages/Summarize";
@@ -19,14 +19,15 @@ function AppContent() {
 
   return (
     <div>
-      <div className="w-full h-[300rem] pb-32 p-6 bg-gradient-to-r from-[#f6e9f3] to-[#f0dee1]">
+      {/* bg-gradient-to-r from-[#FFFFFC] to-[#e1ecfa] */}
+      <div className="w-full h-[300rem] pb-32 p-6 bg-[#FFFFFC]">
         <div className="">
           <div className="flex flex-col gap-2 h-full">
             <Navbar />
           </div>
           <div className="h-full w-full">
             <Routes>
-              <Route path="/" element={<Upload />} />
+              <Route path="/" element={<Home />} />
               <Route path="/summarize" element={<Summarize />} />
             </Routes>
           </div>
