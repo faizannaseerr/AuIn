@@ -9,6 +9,9 @@ module.exports = {
         source: ["Source Sans 3", "sans-serif"],
         mont: ["Montserrat", "sans-serif"]
       },
+      backgroundImage: {
+        'paint': "url('./images/blue.jpeg')",
+      },
     },
   },
   plugins: [],

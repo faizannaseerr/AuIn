@@ -20,7 +20,7 @@ function AppContent() {
   return (
     <div>
       {/* bg-gradient-to-r from-[#FFFFFC] to-[#e1ecfa] */}
-      <div className="w-full h-[300rem] pb-32 p-6 bg-[#FFFFFC]">
+      <div className="w-full h-full pb-32 p-6 bg-[#FFFFFC]">
         <div className="">
           <div className="flex flex-col gap-2 h-full">
             <Navbar />

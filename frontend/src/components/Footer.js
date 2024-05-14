@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { PiRecordFill, PiUploadSimpleBold } from "react-icons/pi";
+import { motion } from "framer-motion"
 
 // from-[#FEEAFA] to-[#FDD8F6] -- colours
 
@@ -86,27 +87,27 @@ const Footer = () => {
     };
   }, [navigate]);
   return (
-    <div className="w-full fixed bottom-0 h-24 flex flex-row bg-sky-950 text-sm font-bold text-[#FFFFFC]">
+    <div className="w-full fixed bottom-0 h-28 flex flex-row bg-sky-950 text-sm font-bold text-[#FFFFFC]">
       <div className="w-full bg-sky-900 shadow-md m-2 rounded-lg duration-500 transition-all flex flex-row items-center justify-center gap-10">
         {/* hover:my-[0.6rem] */}
-        <div className="pl-8 font-source opacity-80">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="pl-8 font-source opacity-80">
           Press the record symbol to start recording a session
-        </div>
-        <div className="pr-16">
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="pr-16">
           <div
             className="hover:bg-sky-800 p-2 rounded-full cursor-pointer group active:bg-sky-700"
             id="mic"
           >
             <PiRecordFill className="opacity-70 group-hover:opacity-100 duration-200" />
           </div>
-        </div>
+        </motion.div>
       </div>
       <div className="w-full bg-sky-900 shadow-md my-2 mr-2 rounded-lg duration-500 flex flex-row items-center justify-center gap-10 transition-all">
         {/* hover:my-[0.6rem]*/}
-        <div className="pl-8 font-source opacity-80">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="pl-8 font-source opacity-80">
           Press the upload button to upload a pre-recorded session
-        </div>
-        <div className="pr-16">
+        </motion.div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="pr-16">
           <div className="relative hover:bg-sky-800 p-2 rounded-full group active:bg-sky-700 overflow-hidden">
             {/* maybe add cursor pointer idk how though */}
             <PiUploadSimpleBold className="opacity-70 group-hover:opacity-100 duration-200" />
@@ -117,7 +118,7 @@ const Footer = () => {
               id="fileInput"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
