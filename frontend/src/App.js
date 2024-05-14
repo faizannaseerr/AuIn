@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Summarize from "./pages/Summarize";
+import Recordings from "./pages/Recordings";
+import Categories from "./pages/Categories";
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function AppContent() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/summarize" element={<Summarize />} />
+              <Route path="/recordings" element={<Recordings />} />
+              <Route path="/categories" element={<Categories />} />
             </Routes>
           </div>
         </div>
