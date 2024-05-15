@@ -22,9 +22,7 @@ const Navbar = () => {
         </motion.div>
         <Link to="/recordings">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="font-semibold text-gray-50 hover:text-white bg-zinc-950 rounded-sm px-6 py-3 cursor-pointer max-w-fit hover:bg-zinc-700 transition-all duration-200 shadow-md hover:shadow-lg">
-
             Recordings
-
           </motion.div>
         </Link>
       </div>

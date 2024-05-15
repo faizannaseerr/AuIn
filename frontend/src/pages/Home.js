@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center py-8 px-60 text-center h-full">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-5xl font-semibold pb-4 font-source text-black font-merr">
-        Audio Intellect 💡
+        Audio Intellect <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1, duration: 1.5 }} className="inline-block"> 💡 </motion.div>
       </motion.div>
       <div className="transition-all text-xl mt-8 max-w-[55rem] font-medium rounded-md font-source pl-8 flex flex-col gap-6">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="opacity-60 text-left"> An innovative platform designed to seamlessly capture and enhance your meeting and lecture experiences. With Audio Intellect, you can effortlessly record, upload, and transform your sessions into comprehensive summaries, actionable notes, and follow-up tasks, all meticulously curated within the ecosystem. </motion.div>

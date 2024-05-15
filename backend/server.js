@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 app.use(cors());
 
 app.use("/recordings", recordingRoutes);
-app.use("", summarizationRoutes);
+app.use("/summarize", summarizationRoutes);
 
 // connect to db
 mongoose

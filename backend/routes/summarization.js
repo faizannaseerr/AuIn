@@ -13,9 +13,9 @@ const {
 
 const router = express.Router();
 
-router.post("/summarize", upload.single("audio"), getTranscript)
+router.post("/", upload.single("audio"), getTranscript)
 
-router.patch("/summarize", getSummary)
+router.patch("/", getSummary)
 // this needs to be changed to getAll Values in summarizationController & here
 
 module.exports = router
