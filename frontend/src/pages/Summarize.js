@@ -49,14 +49,14 @@ const Summarize = () => {
       // could add if statement for if no audio file, then display component accordingly here
       try {
         // run summarization only if it has not been done before in mongo database
-        const result = await handleRecording(state.audioFile);
+        // const result = await handleRecording(state.audioFile);
         // result is in form: {link, name, transcript}
-        // setLink("hello")
-        // setTranscription("The stale smell of old beer lingers. It takes heat to bring out the odor. A cold dip restores health and zest. A salt pickle tastes fine with ham. Tacos al pastor are my favorite. A zestful food is the hot cross bun.")
-        setLink(result.link)
-        setTranscription(result.transcript)
-        createSummary(result.transcript);
-        // setResponse("First three words: The stale smell Last three words: hot cross bun.")
+        setLink("hello")
+        setTranscription("The stale smell of old beer lingers. It takes heat to bring out the odor. A cold dip restores health and zest. A salt pickle tastes fine with ham. Tacos al pastor are my favorite. A zestful food is the hot cross bun.")
+        // setLink(result.link)
+        // setTranscription(result.transcript)
+        // createSummary(result.transcript);
+        setResponse("First three words: The stale smell Last three words: hot cross bun.")
         // navigate("/create", { state: { response: response, link: link, transcription: transcription } });
       } catch (error) {
         console.error("Error while handling recording:", error);
@@ -69,7 +69,7 @@ const Summarize = () => {
 
   useEffect(() => {
     if (response && link && transcription) {
-      navigate("/create", { state: { response: response.choices[0].message.content, link: link, transcription: transcription } });
+      navigate("/create", { state: { response: response, link: link, transcription: transcription } });
       // response.choices[0].message.content
     }
   }, [response, link, transcription, navigate]);
