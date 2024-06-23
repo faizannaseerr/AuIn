@@ -25,7 +25,7 @@ const RecordForm = (props) => {
 
     const handleClick = async () => {
         const recording = { filename: title, link, transcript, summary, categories };
-        const response = await fetch("/create", {
+        const response = await fetch("https://au-in.vercel.app/create", {
             method: "POST",
             body: JSON.stringify(recording),
             headers: {
