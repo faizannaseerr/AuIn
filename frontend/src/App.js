@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Summarize from "./pages/Summarize";
 import Recordings from "./pages/Recordings";
+import Create from "./pages/Create";
 import Categories from "./pages/Categories";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-  const hideFooter = location.pathname === '/summarize';
+  const hideFooter = location.pathname === '/summarize' || location.pathname === '/create';
 
   return (
     <div>
@@ -31,6 +32,7 @@ function AppContent() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/summarize" element={<Summarize />} />
+              <Route path="/create" element={<Create />} />
               <Route path="/recordings" element={<Recordings />} />
               <Route path="/categories" element={<Categories />} />
             </Routes>

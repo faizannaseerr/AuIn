@@ -6,28 +6,32 @@ require("dotenv").config();
 const createRecording = async (req, res) => {
   let emptyFields = [];
   const { filename, link, transcript, summary, categories } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
 
   if (!filename) {
     emptyFields.push("filename");
+    console.log("no filename")
   }
   if (!link) {
     emptyFields.push("link");
+    console.log("no link")
   }
   if (!transcript) {
     emptyFields.push("transcript");
+    console.log("no transcript")
   }
   if (!summary) {
     emptyFields.push("summary");
+    console.log("no summary")
   }
   if (!categories) {
     emptyFields.push("categories");
+    console.log("no categories")
   }
   if (emptyFields.length > 0) {
-    res
+    return res
       .status(400)
       .json({ error: "Please fill in all the fields", emptyFields });
-    // return;
   }
 
   // add doc to db

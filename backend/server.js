@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 // middleware
 app.use(cors());
 
-app.use("/recordings", recordingRoutes);
+app.use("", recordingRoutes);
 app.use("/summarize", summarizationRoutes);
 
 // connect to db

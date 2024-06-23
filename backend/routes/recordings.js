@@ -10,17 +10,17 @@ const {
 const router = express.Router();
 
 // GET all recordings
-router.get("/", getRecordings);
+router.get("/recordings", getRecordings);
 
 // GET single recording
-router.get("/:id", getRecording);
+router.get("/recordings/:id", getRecording);
 
 // POST a new recording
-router.post("/", createRecording);
+router.post("/create", createRecording);
 
-router.patch("/:id", updateRecording);
+router.patch("/recordings/:id", updateRecording);
 
 // DELETE a blog
-router.delete("/:id", deleteRecording);
+router.delete("/recordings/:id", deleteRecording);
 
 module.exports = router;
